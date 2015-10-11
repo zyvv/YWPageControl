@@ -24,7 +24,6 @@
     pageControl.backgroundColor = [UIColor grayColor];
     [self.view addSubview:pageControl];
     
-    
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteButton.frame = CGRectMake(250, 50, 70, 50);
     [deleteButton setTitle:@"删除" forState:UIControlStateNormal];
@@ -37,6 +36,12 @@
     [renameButton addTarget:self action:@selector(renameButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:renameButton];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 /**
  *  删除
@@ -56,11 +61,6 @@
 - (void)renameButtonAction:(UIButton *)button
 {
     [pageControl renameCurrentPageViewTitleWithTitle:@"你好漂亮"];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
