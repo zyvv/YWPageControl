@@ -30,5 +30,12 @@
 
 @property (nonatomic, copy) NSString *name; // 设备名称
 
+@property (nonatomic, copy) NSString *macAddress; // Mac地址
+
+@property (nonatomic, strong) NSNumber *deviceModel; // 设备型号
+
+@property (nonatomic, strong) NSNumber *ipAddress; // 设备IP地址
+
 @property (nonatomic, assign) id<YWDeviceStatePageViewDelegate>delegate;
+
 @end

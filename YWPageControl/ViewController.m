@@ -35,6 +35,12 @@
     [renameButton setTitle:@"重命名" forState:UIControlStateNormal];
     [renameButton addTarget:self action:@selector(renameButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:renameButton];
+    
+    UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    refreshButton.frame = CGRectMake(250, 190, 70, 50);
+    [refreshButton setTitle:@"更新" forState:UIControlStateNormal];
+    [refreshButton addTarget:self action:@selector(refreshButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:refreshButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,7 +66,19 @@
  */
 - (void)renameButtonAction:(UIButton *)button
 {
-    [pageControl renameCurrentPageViewTitleWithTitle:@"你好漂亮"];
+    NSString *tempName = [NSString stringWithFormat:@"设备%.0u", arc4random() % 100];
+    [pageControl renameCurrentPageViewTitle:tempName];
+}
+
+/**
+ *  更新状态
+ *
+ *  @param button
+ */
+- (void)refreshButtonAction:(UIButton *)button
+{
+    NSString *tempState = [NSString stringWithFormat:@"%.0u", arc4random() % 100];
+    [pageControl refreshCurrentPageViewState:tempState];
 }
 
 @end

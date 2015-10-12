@@ -432,6 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YWPageControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = qiafan.top.YWPageControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -443,6 +444,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YWPageControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = qiafan.top.YWPageControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -516,6 +518,7 @@
 				44050B891BC9FDD00096051E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		44050B8A1BC9FDD00096051E /* Build configuration list for PBXNativeTarget "YWPageControlTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +527,7 @@
 				44050B8C1BC9FDD00096051E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		44050B8D1BC9FDD00096051E /* Build configuration list for PBXNativeTarget "YWPageControlUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +536,7 @@
 				44050B8F1BC9FDD00096051E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
