@@ -18,6 +18,8 @@
 		44050B961BC9FDEF0096051E /* YWAddDevicePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44050B911BC9FDEF0096051E /* YWAddDevicePageView.m */; settings = {ASSET_TAGS = (); }; };
 		44050B971BC9FDEF0096051E /* YWDeviceStatePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44050B931BC9FDEF0096051E /* YWDeviceStatePageView.m */; settings = {ASSET_TAGS = (); }; };
 		44050B981BC9FDEF0096051E /* YWPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 44050B951BC9FDEF0096051E /* YWPageControl.m */; settings = {ASSET_TAGS = (); }; };
+		441B8AB81BCC755400283C3C /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 441B8AB71BCC755400283C3C /* QRCodeView.m */; settings = {ASSET_TAGS = (); }; };
+		441B8ABA1BCC756700283C3C /* QRCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441B8AB91BCC756700283C3C /* QRCodeView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		44050B931BC9FDEF0096051E /* YWDeviceStatePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWDeviceStatePageView.m; sourceTree = "<group>"; };
 		44050B941BC9FDEF0096051E /* YWPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWPageControl.h; sourceTree = "<group>"; };
 		44050B951BC9FDEF0096051E /* YWPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWPageControl.m; sourceTree = "<group>"; };
+		441B8AB61BCC755400283C3C /* QRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
+		441B8AB71BCC755400283C3C /* QRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
+		441B8AB91BCC756700283C3C /* QRCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +125,9 @@
 				44050B611BC9FDD00096051E /* AppDelegate.m */,
 				44050B631BC9FDD00096051E /* ViewController.h */,
 				44050B641BC9FDD00096051E /* ViewController.m */,
+				441B8AB61BCC755400283C3C /* QRCodeView.h */,
+				441B8AB71BCC755400283C3C /* QRCodeView.m */,
+				441B8AB91BCC756700283C3C /* QRCodeView.xib */,
 				44050B661BC9FDD00096051E /* Main.storyboard */,
 				44050B691BC9FDD00096051E /* Assets.xcassets */,
 				44050B6B1BC9FDD00096051E /* LaunchScreen.storyboard */,
@@ -258,6 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				441B8ABA1BCC756700283C3C /* QRCodeView.xib in Resources */,
 				44050B6D1BC9FDD00096051E /* LaunchScreen.storyboard in Resources */,
 				44050B6A1BC9FDD00096051E /* Assets.xcassets in Resources */,
 				44050B681BC9FDD00096051E /* Main.storyboard in Resources */,
@@ -289,6 +298,7 @@
 				44050B651BC9FDD00096051E /* ViewController.m in Sources */,
 				44050B961BC9FDEF0096051E /* YWAddDevicePageView.m in Sources */,
 				44050B621BC9FDD00096051E /* AppDelegate.m in Sources */,
+				441B8AB81BCC755400283C3C /* QRCodeView.m in Sources */,
 				44050B981BC9FDEF0096051E /* YWPageControl.m in Sources */,
 				44050B5F1BC9FDD00096051E /* main.m in Sources */,
 			);

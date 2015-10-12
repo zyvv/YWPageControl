@@ -7,6 +7,7 @@
 //
 
 #import "YWPageControl.h"
+#import "QRCodeView.h"
 
 @implementation YWPageControl
 {
@@ -22,8 +23,6 @@
         pageViewsArray = [NSMutableArray array];
         [self loadDevicesScrollView];
         [self loadPageControl];
-        
-        [self addDeviceResultBlock];
     }
     return self;
 }
@@ -61,8 +60,33 @@
     // =======跳转到扫描二维码页面=======
     // ===============================
 #warning 添加设备测试
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"添加设备" message:@"选择成功或者失败" delegate:self cancelButtonTitle:@"成功" otherButtonTitles:@"失败", nil];
-    [alertView show];
+    QRCodeView *qrCodeView = [[[NSBundle mainBundle] loadNibNamed:@"QRCodeView" owner:self options:nil] lastObject];
+    qrCodeView.frame = self.window.bounds;
+    [self.window addSubview:qrCodeView];
+    
+    __weak YWPageControl *weakSelf = self;
+    [qrCodeView addDeviceResultBlock:^(BOOL isSuccess, NSDictionary *deviceInfomation, NSString *errorMessage) {
+        __strong YWPageControl *strongSelf = weakSelf;
+        if (isSuccess) {
+            // 添加设备成功
+            YWDeviceStatePageView *deviceStatePageView = [[YWDeviceStatePageView alloc] initWithFrame:CGRectMake(strongSelf -> pageViewsArray.count * strongSelf -> devicesScrollView.bounds.size.width, 0, strongSelf -> devicesScrollView.bounds.size.width, strongSelf -> devicesScrollView.bounds.size.width)];
+            deviceStatePageView.delegate = strongSelf;
+            // 设备的详细信息
+            deviceStatePageView.name = [deviceInfomation objectForKey:@"name"];
+            deviceStatePageView.macAddress = [deviceInfomation objectForKey:@"macAddress"];
+            deviceStatePageView.ipAddress = [deviceInfomation objectForKey:@"ipAddress"];
+            deviceStatePageView.deviceModel = [deviceInfomation objectForKey:@"deviceModel"];
+            deviceStatePageView.state = [deviceInfomation objectForKey:@"state"];
+            
+            [strongSelf -> devicesScrollView addSubview:deviceStatePageView];
+            [strongSelf -> pageViewsArray addObject:deviceStatePageView];
+            [strongSelf reloadDevicesScrollView];
+        } else {
+            // 添加设备失败
+            NSLog(@"addDeviceFailure, errorMessage: %@", errorMessage);
+        }
+
+    }];
 }
 
 
@@ -102,36 +126,6 @@
         YWDeviceStatePageView *tempView = [pageViewsArray objectAtIndex:i];
         tempView.frame = CGRectMake(i*devicesScrollView.bounds.size.width, tempView.frame.origin.y, tempView.frame.size.width, tempView.frame.size.height);
     }
-}
-
-/**
- *  添加设备成功或者失败的回调
- */
-- (void)addDeviceResultBlock
-{
-    __weak YWPageControl *weakSelf = self;
-    self.addDeviceBlock = ^(BOOL isSuccess, NSDictionary *deviceInfomation, NSString *errorMessage) {
-        
-        __strong YWPageControl *strongSelf = weakSelf;
-        if (isSuccess) {
-            // 添加设备成功
-            YWDeviceStatePageView *deviceStatePageView = [[YWDeviceStatePageView alloc] initWithFrame:CGRectMake(strongSelf -> pageViewsArray.count * strongSelf -> devicesScrollView.bounds.size.width, 0, strongSelf -> devicesScrollView.bounds.size.width, strongSelf -> devicesScrollView.bounds.size.width)];
-            deviceStatePageView.delegate = strongSelf;
-            // 设备的详细信息
-            deviceStatePageView.name = [deviceInfomation objectForKey:@"name"];
-            deviceStatePageView.macAddress = [deviceInfomation objectForKey:@"macAddress"];
-            deviceStatePageView.ipAddress = [deviceInfomation objectForKey:@"ipAddress"];
-            deviceStatePageView.deviceModel = [deviceInfomation objectForKey:@"deviceModel"];
-            deviceStatePageView.state = [deviceInfomation objectForKey:@"state"];
-            
-            [strongSelf -> devicesScrollView addSubview:deviceStatePageView];
-            [strongSelf -> pageViewsArray addObject:deviceStatePageView];
-            [strongSelf reloadDevicesScrollView];
-        } else {
-            // 添加设备失败
-            NSLog(@"addDeviceFailure, errorMessage: %@", errorMessage);
-        }
-    };
 }
 
 #pragma mark - 公开方法
@@ -175,42 +169,6 @@
         }
     } else {
         // 当前没有连接设备或者当前界面是添加新设备界面
-    }
-}
-
-- (void)addDeviceSuccessWithDeviceInfomation:(NSDictionary *)info
-{
-    self.addDeviceBlock(YES, info, nil);
-}
-
-- (void)addDeviceFailureWithErrorMessage:(NSString *)msg
-{
-    self.addDeviceBlock(NO, nil, msg);
-}
-
-
-#warning 添加设备测试
-#pragma mark - UIAlertViewDelegate 方法
-// ======此处为假设成功或者失败
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        // 假设添加设备成功
-        NSString *tempName = [NSString stringWithFormat:@"新设备%.0u", arc4random() % 100];
-        NSString *tempState = [NSString stringWithFormat:@"%.0u", arc4random() % 100];
-        NSDictionary *deviceInfomation = @{@"name": tempName,
-                                           @"state": tempState,
-                                           @"macAddress": [NSNumber numberWithLongLong:43423423432],
-                                           @"ipAddress": @"10.10.1",
-                                           @"deviceModel": [NSNumber numberWithInt:10]};
-//        self.addDeviceBlock(YES, deviceInfomation, nil);
-        [self addDeviceSuccessWithDeviceInfomation:deviceInfomation];
-        
-    } else {
-        // 假设添加设备失败
-        NSString *errorMessage = @"连接出错";
-//        self.addDeviceBlock(NO, nil, errorMessage);
-        [self addDeviceFailureWithErrorMessage:errorMessage];
     }
 }
 
